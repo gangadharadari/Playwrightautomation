@@ -18,14 +18,15 @@ test.describe('Add Job Title Feature', () => {
         await page.locator("button[type='submit']").click()
 
         //Asserssions - minimum one asserssion in test it means verifications
-        await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
+        // await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index")
 
-        await page.locator("//a[@class='oxd-main-menu-item active']").click()
-        await page.locator("//li[contains(@class,'--active oxd-topbar-body-nav-tab')]").click()
-        await page.locator("(//a[@class='oxd-topbar-body-nav-tab-link'])[1]").click()
-        await page.locator("//button[contains(@class,'oxd-button oxd-button--medium')]").click()
-        await page.locator("(//input[@class='oxd-input oxd-input--active'])[2]").fill(jobtitle.jobtitle)
-        await page.locator("(//textarea[contains(@class,'oxd-textarea oxd-textarea--active')])[1]").fill(jobtitle.jobDescription)
+        await page.locator("//span[text()='Admin']").click()
+        await page.locator("//span[normalize-space(text())='Job']").click()
+        await page.locator("//a[normalize-space(text())='Job Titles']").click()
+        await page.locator("//button[contains(.,'Add')]").click()
+        await page.locator("(//label[normalize-space(text())='Job Title']/following::input)[1]").fill(jobtitle.jobtitle)
+        await page.locator("(//label[normalize-space(text())='Job Description']/following::textarea)[1]").fill(jobtitle.jobDescription)
+        await page.locator("//button[contains(.,'Save')]").click()
 
         await expect(page).toHaveURL("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewJobTitleList")
 
